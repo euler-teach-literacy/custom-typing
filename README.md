@@ -5,10 +5,15 @@ type "\" + a symbol name to type a symbol that maybe difficult to find.
 
 # hotkey list: 
 \tup      👍
+
 \yes      ✅
+
 \lol      🤣
+
 \:)       🙃
+
 \skull    💀
+
 \mad      🤪
 
 ---------------------maths--------------------------

@@ -18,4 +18,5 @@ Updating coming up:
 - more symbols
 - ???
 
-### made by - Salty fish(salty-salted-fish) and Euler()
+### made by - Salty fish and Euler
+#### salty-salted-fish & euler-teach-literacy 

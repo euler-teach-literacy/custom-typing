@@ -65,7 +65,7 @@ HideToolTip() {
 
 
 ; hotkeys for typing ---------------------------------------------------
-; hotkeys in hotkey
+; hotstring in hotstring
 ::\tup::👍
 ::\yes::✅
 ::\lol::🤣
@@ -502,12 +502,13 @@ import json
 import os
 import re
 import Flask
+import Canva
 )"
 }
 
 
 ; wheel ----------------------------------------------------------------------
-#Requires AutoHotkey v2.0
+
 
 ; -------------------------------
 ; 全局配置

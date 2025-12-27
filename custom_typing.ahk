@@ -1,5 +1,5 @@
-﻿#Requires AutoHotkey v2.0
-
+#Requires AutoHotkey v2.0
+#Hotstring C
 ;msgbox "running"
 
 ; admin:  press ctrl shift r to reload
@@ -7,20 +7,74 @@
     MsgBox("Script is reloading...")
     Reload()
 }
-; main ---------------------------------
+
+; by fish -----------------------------------------------
+
+; ctrl C
+
+bloxd := 1
+ships := 0
+copy_prompt := 0
+first_copy_prompt := 0
+started := A_TickCount
+
+#HotIf A_TickCount - started >= 100
+
+HideToolTip() {
+    ; global copy_prompt
+    global first_copy_prompt
+    ToolTip()
+    first_copy_prompt := 0
+    ; copy_prompt := 0
+}
+
+~^c:: {
+    ; global copy_prompt
+    global first_copy_prompt
+
+    Sleep 100
+    ;;; MsgBox(A_Clipboard)
+    ;;; ToolTip(A_Clipboard)
+    clip := SubStr(A_Clipboard, 1, 200)
+    if StrLen(A_Clipboard) > 200
+        clip .= "..."
+    ToolTip(clip)
+    ; copy_prompt := 1
+    first_copy_prompt := 1
+
+    SetTimer(HideToolTip, -1000)
+
+}
+
+~^Alt:: {
+    global first_copy_prompt
+    ; global copy_prompt
+    ; if copy_prompt {
+    if not first_copy_prompt {
+        ToolTip(A_Clipboard)
+    }
+    ; }
+}
+~Control Up:: {
+    global first_copy_prompt
+
+    if not first_copy_prompt {
+        ToolTip()
+    }
+}
 
 
+; hotkeys for typing ---------------------------------------------------
 ; hotkeys in hotkey
 ::\tup::👍
 ::\yes::✅
 ::\lol::🤣
 ::\:)::🙃
 ::\skull::💀
-::\mad::🤪
+::\insane::🤪
 
 ; maths
 ::\pi::π
-::\delta::∆
 ::\aleph::ℵ
 ::\infin::∞
 
@@ -32,10 +86,10 @@
 ::\pm::±
 ::\mp::∓
 ::\sqrt::√
-::neq::≠
+::\neq::≠
 ::\subset::⊆
-::\in::∈
-::\therfore::∴
+::\belongto::∈
+::\therefore::∴
 ::\because::∵
 ::\log::㏒
 ::\in::㏑
@@ -78,21 +132,81 @@
 ::\num10::⑩
 
 ::\important::※
-;:: ::
+
+; Greek Alphabet============================================-
+::\Alpha::Α
+::\Beta::Β
+::\Gamma::Γ
+::\Delta::Δ
+::\Epsilon::Ε
+::\Zeta::Ζ
+::\Eta::Η
+::\Theta::Θ
+::\Iota::Ι
+::\Kappa::Κ
+::\Lambda::Λ
+::\Mu::Μ
+::\Nu::Ν
+::\Xi::Ξ
+::\Omicron::Ο
+::\Pi::Π
+::\Rho::Ρ
+::\Sigma::Σ
+::\Tau::Τ
+::\Upsilon::Υ
+::\Phi::Φ
+::\Chi::Χ
+::\Psi::Ψ
+::\Omega::Ω
+; Greek Alphabet lowercases============================================-
+
+::\alpha::α
+::\beta::β
+::\gamma::γ
+::\delta::δ
+::\epsilon::ε
+::\zeta::ζ
+::\eta::η
+::\theta::θ
+::\iota::ι
+::\kappa::κ
+::\lambda::λ
+::\mu::μ
+::\nu::ν
+::\xi::ξ
+::\omicron::ο
+::\pi::π
+::\rho::ρ
+::\sigma::σ
+::\tau::τ
+::\upsilon::υ
+::\phi::φ
+::\chi::χ
+::\psi::ψ
+::\omega::ω
+
+; literal=======================================================
+::\mdash::—
+::\ndash::–
+::\hyphen::-
+::\<<::《
+::\>>::》
+::\book[::《
+::\book]::》
 
 ; arrows------------------------------
-::\Uparrow::⇑
-::\uparrow::↑
-::\Downarrow::⇓
-::\downarrow::↓
-::\leftarrow::←
-::\Leftarrow::⇐
-::\rightarrow::→
-::\Rightarrow::⇒
-::\leftrightarrow::↔
-::\Leftrightarrow::⇔
-::\updownarrow::↕
-::\Updownarrow::⇕
+::\Upa2::⇑
+::\upa::↑
+::\Downa2::⇓
+::\downa::↓
+::\lefta::←
+::\Lefta2::⇐
+::\righta::→
+::\Righta2::⇒
+::\lra::↔
+::\Lra2::⇔
+::\uda::↕
+::\Uda2::⇕
 ;......
 
 ; boxdrawing------------------------------
@@ -108,7 +222,7 @@
 
 ::\4note::♩
 ::\8note::♪
-::\88note::♫
+::\28note::♫
 ::\216note::♬
 ::\2note::𝅗𝅥
 ::\1note::𝅝
@@ -137,7 +251,7 @@
 ::\XD::😆
 ::\hmm::🤨
 ::\shock::😮
-::\upsidedown::🙃
+::\irony::🙃
 ::\worry::😧
 ::\crazy::🤪
 ::\vomit::🤮
@@ -389,5 +503,200 @@ import os
 import re
 import Flask
 )"
+}
+
+
+; wheel ----------------------------------------------------------------------
+#Requires AutoHotkey v2.0
+
+; -------------------------------
+; 全局配置
+items := ["chess", "bloxd", "3", "4", "5", "6"]
+itemCount := items.Length
+radius := 120
+deadZone := 15
+currentIndex := 0
+menuGui := ""
+labels := []
+
+; -------------------------------
+!w::OpenRadialMenu()  ; Alt + W 打开
+
+; -------------------------------
+OpenRadialMenu() {
+    global menuGui, centerX, centerY, labels
+
+    MouseGetPos &centerX, &centerY
+
+    menuGui := Gui("+AlwaysOnTop -Caption +ToolWindow +E0x20")
+    menuGui.BackColor := "1e1e1e"
+    menuGui.SetFont("s10 cFFFFFF", "Segoe UI")
+
+    labels := []
+    DrawItems()
+
+    menuGui.Show("x" centerX-radius " y" centerY-radius " w" radius*2 " h" radius*2)
+
+    SetTimer(UpdateSelection, 5)
+
+    Hotkey("Alt Up", Confirm, "On")  ; 松开 Alt 自动确认
+    Hotkey("Esc", Cancel, "On")
+}
+
+; -------------------------------
+DrawItems() {
+    global items, itemCount, radius, menuGui, labels
+
+    angleStep := 360 / itemCount
+    Loop itemCount {
+        angle := (A_Index-1)*angleStep - 90
+        rad := angle * 0.0174533
+        x := radius + Cos(rad)*(radius-30)
+        y := radius + Sin(rad)*(radius-30)
+
+        txt := menuGui.AddText(
+            Format("x{} y{} Center w70 vItem{}", x-35, y-12, A_Index),
+            items[A_Index]
+        )
+        labels.Push(txt)
+    }
+}
+
+; -------------------------------
+lastAngle := 0
+
+UpdateSelection() {
+    global centerX, centerY, currentIndex, itemCount, deadZone, labels, lastAngle
+
+    MouseGetPos &mx, &my
+    dx := mx - centerX
+    dy := my - centerY
+
+    dist := Sqrt(dx*dx + dy*dy)
+    if dist < deadZone {
+        Highlight(0)
+        return
+    }
+
+    angle := Mod(DllCall("msvcrt\atan2", "double", dy, "double", dx, "double") * 57.2957795 + 450, 360)
+
+    ; 如果鼠标角度变化太小，不切换
+    if Abs(angle - lastAngle) < 5  ; 阈值可以调
+        return
+
+    lastAngle := angle
+    index := Floor(angle / (360/itemCount)) + 1
+    Highlight(index)
+}
+
+; -------------------------------
+Highlight(index) {
+    global currentIndex, labels
+
+    if index = currentIndex
+        return
+
+    ; 恢复旧选中
+    if currentIndex {
+        AnimateColor(labels[currentIndex], 0x00FFAA, 0xFFFFFF)
+        labels[currentIndex].SetFont("s10")
+    }
+
+    ; 新选中
+    if index {
+        AnimateColor(labels[index], 0xFFFFFF, 0x00FFAA)
+        labels[index].SetFont("s13")
+    }
+
+    currentIndex := index
+}
+
+; -------------------------------
+; 全局动画管理对象
+animations := {list: [], running: false}
+
+AnimateColor(ctrl, fromColor, toColor, duration := 120) {
+    global animations
+    start := A_TickCount
+    animations.list.Push({ctrl: ctrl, from: fromColor, to: toColor, start: start, duration: duration})
+    if !animations.running {
+        animations.running := true
+        SetTimer(UpdateAnimations, 16)
+    }
+}
+
+UpdateAnimations(*) {
+    global animations
+    now := A_TickCount
+    finished := []
+
+    for i, anim in animations.list {
+        t := (now - anim.start) / anim.duration
+        if (t >= 1) {
+            anim.ctrl.SetFont("c" anim.to)
+            finished.Push(i)
+        } else {
+            anim.ctrl.SetFont("c" LerpColor(anim.from, anim.to, t))
+        }
+    }
+
+    ; 删除完成的动画
+    for idx in finished {
+        animations.list.RemoveAt(idx)
+    }
+
+    ; 如果没有动画了，关闭定时器
+    if animations.list.Length() = 0 {
+        SetTimer(UpdateAnimations, "Off")
+        animations.running := false
+    }
+}
+
+LerpColor(c1, c2, t) {
+    r1 := (c1 >> 16) & 0xFF
+    g1 := (c1 >> 8) & 0xFF
+    b1 := c1 & 0xFF
+
+    r2 := (c2 >> 16) & 0xFF
+    g2 := (c2 >> 8) & 0xFF
+    b2 := c2 & 0xFF
+
+    r := Round(r1 + (r2 - r1) * t)
+    g := Round(g1 + (g2 - g1) * t)
+    b := Round(b1 + (b2 - b1) * t)
+
+    return Format("{:02X}{:02X}{:02X}", r, g, b)
+}
+; -------------------------------
+Confirm(*) {
+    global items, currentIndex
+    CloseMenu()
+    if currentIndex = 0
+        return
+
+    choice := items[currentIndex]
+
+    switch choice {
+        case "chess": Run "https://www.chess.com"
+        case "bloxd": MsgBox "https://bloxd.io"
+        case "3": MsgBox "3"
+        case "4": MsgBox "4"
+        case "5": MsgBox "5"
+        case "6": MsgBox "6"
+    }
+}
+
+; -------------------------------
+Cancel(*) {
+    CloseMenu()
+}
+
+; -------------------------------
+CloseMenu() {
+    global menuGui
+    SetTimer(UpdateSelection, 0)
+    Hotkey("Alt Up", "Off")
+    menuGui.Destroy()
+    menuGui := ""
 }
 

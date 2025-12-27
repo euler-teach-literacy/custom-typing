@@ -1,7 +1,6 @@
 # custom-typing
 
-this ahk file is to help you type faster or go to websites faster
-type "\" + a symbol name to type a symbol that maybe difficult to find. 
+this ahk file have multiple functions and we are still trying to add more functions! Download the exe file if you do not know how to execute it (the exe file might not be updated on time)
 
 # what can it do?
 1. replace hotstrings to emojis or special symbols

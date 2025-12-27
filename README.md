@@ -17,3 +17,5 @@ Updating coming up:
 - more emojis
 - more symbols
 - ???
+
+### made by - Salty fish(salty-salted-fish) and Euler()

@@ -235,9 +235,10 @@ HideToolTip() {
 ::\treble::𝄞
 ::\bass::𝄢
 ::\forte::𝆑
-::\piano::𝆏
+::\piano symbol::𝆏
 
 ; faces / emojis
+#Hotstring C0
 ::\think::🤔
 ;  ::\:)::🙂
 ::\smile::🙂
@@ -286,8 +287,97 @@ HideToolTip() {
 ::\tup::👍
 ::\tdown::👎
 ::\flex::💪
+::\hehe::😁
+::\wink::😉
+::\shy::😊
+;warmth?
+::\exciting::🤩
+::\shutup::🤐
+::\relief::😌
+::\toughout::😛
+::\cowboy::🤠
+::angel::😇
+::\shy::🤭
+::\Demon::👿
+::\demon::😈
+::\ghost::👻
+::\partyface::🥳
 
-; other
+; Animal heads ---------------------------
+::\cathead::🐱
+::\catlaugh::😺
+::\catsmile::😸
+::\catlol::😹
+::\catlove::😻
+::\catevillaugh::😼
+::\catkiss::😽
+::\catscared::🙀
+::\catcry::😿
+::\catangry::😾
+::\monkeyeyes::🙈
+::\monkeyears::🙉
+::\monkeymouth::🙊
+::\doghead::🐶
+::\wolfhead::🐺
+::\lionhead::🦁
+::\tigerhead::🐯
+::\deerhead::🦒
+::\foxhead::🦊
+::\raccoonhead::🦝
+::\cowhead::🐮
+::\pighead::🐷
+::\wildboarhead::🐗
+::\rathead::🐭
+::\mousehead::🐭
+::\hamsterhead::🐹
+::\rabithead::🐰
+::\bearhead::🐻
+::\koalahead::🐨
+::\pandahead::🐼
+::\froghead::🐸
+::\zebrahead::🦓
+::\horsehead::🐴
+::\unicornhead::🦄
+::\chickenhead::🐔
+::\dragenhead::🐲
+::\pignose::🐽
+; animals
+::\petfootprint::🐾
+::\monkeysit::🐒
+::\chimpanzee::🦍
+::\orangutan::🦧
+::\dogyellow::🦮
+::\dogorange::🐕‍🦺
+::\poodle::🐩
+::\dog::🐕
+::\cat::🐈
+::\tiger::🐅
+::\bobcat::🐆
+::\horse::🐎
+::\deer::🦌
+::\rhino::🦏
+; other emojis
+::\soccer::⚽
+::\volleball::🏐
+::\basketball::🏀
+::\diamond::💎
+::\football::🏈
+::\dice::🎲
+::\saxophone::🎷
+::\trumpet::🎺
+::\guitar::🎸
+::\violin::🎻
+::piano::🎹
+::\drum::🥁
+::\postal horn::📯
+::\postalhorn::📯
+
+;weather, transportation
+::\water::💧
+::\snow::❄
+
+#Hotstring C
+; other ----------------------------
 ::\cel::℃
 ::\fah::℉
 ::\m^2::㎡
@@ -329,7 +419,6 @@ HideToolTip() {
 ::\trans2::⚦
 ::\trans3::⚩
 
-
 ; shapes
 ::\star::★
 ::\4star::✦
@@ -350,7 +439,7 @@ HideToolTip() {
 ::\E fliptable::(╯‵□′)╯︵┻━┻
 ::\E shocked::(っ °Д °;)っ
 ::\E greeting::（￣︶￣）↗
-::\E slapface::(ノへ￣、)
+::\E slaphead::(ノへ￣、)
 ::\E angry::(╬▔皿▔)╯
 ::\nonsense::~%?…,# *'☆&℃$︿★?
 ::\E wow::(★ ω ★)
@@ -642,13 +731,20 @@ UpdateAnimations(*) {
     }
 
     ; 删除完成的动画
-    for idx in finished {
-        animations.list.RemoveAt(idx)
+    
+    Loop finished.Length {
+    idx := finished[finished.Length - A_Index + 1]
+    animations.list.RemoveAt(idx)
     }
+    ;easier understanding
+    ;for i := finished.Length; i >= 1; i-- {
+    ;animations.list.RemoveAt(finished[i])
+    ;}
+
 
     ; 如果没有动画了，关闭定时器
-    if animations.list.Length() = 0 {
-        SetTimer(UpdateAnimations, "Off")
+    if animations.list.Length = 0 {
+        SetTimer(UpdateAnimations, 0)
         animations.running := false
     }
 }

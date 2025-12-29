@@ -20,13 +20,13 @@ this ahk file have multiple functions and we are still trying to add more functi
 6.  help you build web by putting html or css frame when you type "\css or \html setup"
 7.  help you import common stuff in python when you type "\py import"
 8.  Auto clicker! unfortunately, we cannot make auto click, but we can make you click when you are scrolling!
-   - how it works:
-      - turn wheeldown to leftclick;
-      - turn wheelup to rightclick;
-      - turn leftclick to wheelup;
-      - turn rightclick to wheeldown!
-   - click alt+shift+F12 to activate, and click one more time to deactivate
-   - click "alt" twice after activating to turn on gaming mode, which can help you click 22 times when scrolling! 
+      - how it works:
+         * turn wheeldown to leftclick;
+         * turn wheelup to rightclick;
+         * turn leftclick to wheelup;
+         * turn rightclick to wheeldown!
+      - click alt+shift+F12 to activate, and click one more time to deactivate
+      - click "alt" twice after activating to turn on gaming mode, which can help you click 22 times when scrolling! 
 Updating coming up: 
 - better website wheel
 - more emojis

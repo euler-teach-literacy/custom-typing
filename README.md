@@ -15,7 +15,7 @@ this ahk file have multiple functions and we are still trying to add more functi
 3. go to websites when you type "\" and the website name
     - there will be a input box when you type ***\wiki*** or ***\google*** to search faster
     - support plenty of websites, and we are adding more! 
-4.  wheel of websites (not finished, it might crash)
+4.  wheel of websites (not finished) (click Alt+W)
 5.  show clipboard when you press ctrlC, press ctrl + alt to see whole clipboard
 6.  help you build web by putting html or css frame when you type "\css or \html setup"
 7.  help you import common stuff in python when you type "\py import"

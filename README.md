@@ -27,7 +27,8 @@ this ahk file have multiple functions and we are still trying to add more functi
          * turn rightclick to wheeldown!
       - click alt+shift+F12 to activate, and click one more time to deactivate
       - click "alt" twice after activating to turn on gaming mode, which can help you click 22 times when scrolling! 
-Updating coming up: 
+
+Updates coming up: 
 - better website wheel
 - more emojis
 - more symbols

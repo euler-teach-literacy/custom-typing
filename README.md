@@ -28,12 +28,17 @@ this ahk file have multiple functions and we are still trying to add more functi
       - click alt+shift+F12 to activate, and click one more time to deactivate
       - click "alt" twice after activating to turn on gaming mode, which can help you click 22 times when scrolling! 
 
-Updates coming up: 
+# Updates coming up: 
 - better website wheel
 - more emojis
 - more symbols
 - auto clicker or typer
 - ???
+
+# Updates of v3.2: 
+- auto clicker
+- more animal emojis
+- more websites
 
 ### made by - Salty fish and Euler
 #### salty-salted-fish & euler-teach-literacy 

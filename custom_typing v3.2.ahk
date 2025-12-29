@@ -8,6 +8,14 @@
     Reload()
 }
 
+:*:\help::
+{
+    MsgBox "
+    (
+        You've typed help, 
+        Please go to https://github.com/euler-teach-literacy/custom-typing/blob/main/README.md
+    )"
+}
 ; by fish -----------------------------------------------
 
 ; ctrl C
@@ -27,7 +35,6 @@ HideToolTip() {
     first_copy_prompt := 0
     ; copy_prompt := 0
 }
-
 ~^c:: {
     ; global copy_prompt
     global first_copy_prompt
@@ -66,394 +73,384 @@ HideToolTip() {
 
 ; hotkeys for typing ---------------------------------------------------
 ; hotstring in hotstring
-::\tup::👍
-::\yes::✅
-::\lol::🤣
-::\:)::🙃
-::\skull::💀
-::\insane::🤪
+:*:\tup::👍
+:*:\yes::✅
+:*:\lol::🤣
+:*:\:)::🙃
+:*:\skull::💀
+:*:\insane::🤪
 
 ; maths
-::\pi::π
-::\aleph::ℵ
-::\infin::∞
-
-::\int::∫
-
-::\sigma::∑
-::\cdot::·
-::\div::÷
-::\pm::±
-::\mp::∓
-::\sqrt::√
-::\neq::≠
-::\subset::⊆
-::\belongto::∈
-::\therefore::∴
-::\because::∵
-::\log::㏒
-::\in::㏑
-
-::\angle::∠
-::\deg::°
-
-::\^0::⁰
-::\^1::¹
-::\^2::²
-::\^3::³
-::\^4::⁴
-::\^5::⁵
-::\^6::⁶
-::\^7::⁷
-::\^8::⁸
-::\^9::⁹
-
-::\^^0::₀
-::\^^1::₁
-::\^^2::₂
-::\^^3::₃
-::\^^4::₄
-::\^^5::₅
-::\^^6::₆
-::\^^7::₇
-::\^^8::₈
-::\^^9::₉
-
+:*:\pi::π
+:*:\aleph::ℵ
+:*:\infin::∞
+:*:\int::∫
+:*:\sigma::∑
+:*:\cdot::·
+:*:\div::÷
+:*:\pm::±
+:*:\mp::∓
+:*:\sqrt::√
+:*:\neq::≠
+:*:\subset::⊆
+:*:\belongto::∈
+:*:\therefore::∴
+:*:\because::∵
+:*:\log::㏒
+:*:\in::㏑
+:*:\angle::∠
+:*:\deg::°
+:*:\^0::⁰
+:*:\^1::¹
+:*:\^2::²
+:*:\^3::³
+:*:\^4::⁴
+:*:\^5::⁵
+:*:\^6::⁶
+:*:\^7::⁷
+:*:\^8::⁸
+:*:\^9::⁹
+:*:\^^0::₀
+:*:\^^1::₁
+:*:\^^2::₂
+:*:\^^3::₃
+:*:\^^4::₄
+:*:\^^5::₅
+:*:\^^6::₆
+:*:\^^7::₇
+:*:\^^8::₈
+:*:\^^9::₉
 ; notes
-::\num1::①
-::\num2::②
-::\num3::③
-::\num4::④
-::\num5::⑤
-::\num6::⑥
-::\num7::⑦
-::\num8::⑧
-::\num9::⑨
-::\num10::⑩
+:*:\num1::①
+:*:\num2::②
+:*:\num3::③
+:*:\num4::④
+:*:\num5::⑤
+:*:\num6::⑥
+:*:\num7::⑦
+:*:\num8::⑧
+:*:\num9::⑨
+:*:\num10::⑩
 
 ::\important::※
 
 ; Greek Alphabet============================================-
-::\Alpha::Α
-::\Beta::Β
-::\Gamma::Γ
-::\Delta::Δ
-::\Epsilon::Ε
-::\Zeta::Ζ
-::\Eta::Η
-::\Theta::Θ
-::\Iota::Ι
-::\Kappa::Κ
-::\Lambda::Λ
-::\Mu::Μ
-::\Nu::Ν
-::\Xi::Ξ
-::\Omicron::Ο
-::\Pi::Π
-::\Rho::Ρ
-::\Sigma::Σ
-::\Tau::Τ
-::\Upsilon::Υ
-::\Phi::Φ
-::\Chi::Χ
-::\Psi::Ψ
-::\Omega::Ω
+:*:\Alpha::Α
+:*:\Beta::Β
+:*:\Gamma::Γ
+:*:\Delta::Δ
+:*:\Epsilon::Ε
+:*:\Zeta::Ζ
+:*:\Eta::Η
+:*:\Theta::Θ
+:*:\Iota::Ι
+:*:\Kappa::Κ
+:*:\Lambda::Λ
+:*:\Mu::Μ
+:*:\Nu::Ν
+:*:\Xi::Ξ
+:*:\Omicron::Ο
+:*:\Pi::Π
+:*:\Rho::Ρ
+:*:\Sigma::Σ
+:*:\Tau::Τ
+:*:\Upsilon::Υ
+:*:\Phi::Φ
+:*:\Chi::Χ
+:*:\Psi::Ψ
+:*:\Omega::Ω
 ; Greek Alphabet lowercases============================================-
-
-::\alpha::α
-::\beta::β
-::\gamma::γ
-::\delta::δ
-::\epsilon::ε
-::\zeta::ζ
-::\eta::η
-::\theta::θ
-::\iota::ι
-::\kappa::κ
-::\lambda::λ
-::\mu::μ
-::\nu::ν
-::\xi::ξ
-::\omicron::ο
-::\pi::π
-::\rho::ρ
-::\sigma::σ
-::\tau::τ
-::\upsilon::υ
-::\phi::φ
-::\chi::χ
-::\psi::ψ
-::\omega::ω
+:*:\alpha::α
+:*:\beta::β
+:*:\gamma::γ
+:*:\delta::δ
+:*:\epsilon::ε
+:*:\zeta::ζ
+:*:\eta::η
+:*:\theta::θ
+:*:\iota::ι
+:*:\kappa::κ
+:*:\lambda::λ
+:*:\mu::μ
+:*:\nu::ν
+:*:\xi::ξ
+:*:\omicron::ο
+:*:\pi::π
+:*:\rho::ρ
+:*:\sigma::σ
+:*:\tau::τ
+:*:\upsilon::υ
+:*:\phi::φ
+:*:\chi::χ
+:*:\psi::ψ
+:*:\omega::ω
 
 ; literal=======================================================
-::\mdash::—
-::\ndash::–
-::\hyphen::-
-::\<<::《
-::\>>::》
-::\book[::《
-::\book]::》
+:*:\mdash::—
+:*:\ndash::–
+:*:\hyphen::-
+:*:\<<::《
+:*:\>>::》
+:*:\book[::《
+:*:\book]::》
 
 ; arrows------------------------------
-::\Upa2::⇑
-::\upa::↑
-::\Downa2::⇓
-::\downa::↓
-::\lefta::←
-::\Lefta2::⇐
-::\righta::→
-::\Righta2::⇒
-::\lra::↔
-::\Lra2::⇔
-::\uda::↕
-::\Uda2::⇕
+:*:\Upa2::⇑
+:*:\upa::↑
+:*:\Downa2::⇓
+:*:\downa::↓
+:*:\lefta::←
+:*:\Lefta2::⇐
+:*:\righta::→
+:*:\Righta2::⇒
+:*:\lra::↔
+:*:\Lra2::⇔
+:*:\uda::↕
+:*:\Uda2::⇕
 ;......
 
 ; boxdrawing------------------------------
-::\llcorner::└
-::\lrcorner::┘
-::\ulcorner::┌
-::\urcorner::┐
+:*:\llcorner::└
+:*:\lrcorner::┘
+:*:\ulcorner::┌
+:*:\urcorner::┐
 
 ; music------------------------------
-::\sharp::♯
-::\flat::♭
-::\nat::♮
-
-::\4note::♩
-::\8note::♪
-::\28note::♫
-::\216note::♬
-::\2note::𝅗𝅥
-::\1note::𝅝
-
-::\1rest::𝄻
-::\2rest::𝄼
-::\4rest::𝄽
-::\8rest::𝄾
-
-::\treble::𝄞
-::\bass::𝄢
-::\forte::𝆑
-::\piano symbol::𝆏
+:*:\sharp::♯
+:*:\flat::♭
+:*:\nat::♮
+:*:\4note::♩
+:*:\8note::♪
+:*:\28note::♫
+:*:\216note::♬
+:*:\2note::𝅗𝅥
+:*:\1note::𝅝
+:*:\1rest::𝄻
+:*:\2rest::𝄼
+:*:\4rest::𝄽
+:*:\8rest::𝄾
+:*:\treble::𝄞
+:*:\bass::𝄢
+:*:\forte::𝆑
+:*:\piano symbol::𝆏
 
 ; faces / emojis
 #Hotstring C0
-::\think::🤔
+:*:\think::🤔
 ;  ::\:)::🙂
-::\smile::🙂
-::\angry::😡
-::\skull::💀
-::\cry::😭
-::\lol::🤣
-::\laugh::😄
-::\:D::😄
-::\sweat smile::😅
-::\XD::😆
-::\hmm::🤨
-::\shock::😮
-::\irony::🙃
-::\worry::😧
-::\crazy::🤪
-::\vomit::🤮
-::\nerd::🤓
-::\whocares::🙄💅
-::\poop::💩
-::\fire::🔥
-::\boom::💥
-::\bomb::💣
-::\sad::☹️
-::\:(::☹️
-::\scared::😱
-::\lightning::⚡
-::\painful::😣
-::\sleepy::🥱
-::\exploding head::🤯
-::\swear::🤬
-::\hot::🥵
-::\cold::🥶
-::\sunglass::😎
-::\money::🤑
-::\sick::😷
-::\fever::🤒
-::\injured::🤕
-::\nausea::🤢
-::\joker::🤡
-::\lie::🤥
-::\shh::🤫
-::\alien::👽
-::\skeleton::☠
-::\monkey::🐵
-::\tup::👍
-::\tdown::👎
-::\flex::💪
-::\hehe::😁
-::\wink::😉
-::\shy::😊
+:*:\smile::🙂
+:*:\angry::😡
+:*:\skull::💀
+:*:\cry::😭
+:*:\lol::🤣
+:*:\laugh::😄
+:*:\:D::😄
+:*:\sweat smile::😅
+:*:\XD::😆
+:*:\hmm::🤨
+:*:\shock::😮
+:*:\irony::🙃
+:*:\worry::😧
+:*:\crazy::🤪
+:*:\vomit::🤮
+:*:\nerd::🤓
+:*:\whocares::🙄💅
+:*:\poop::💩
+:*:\fire::🔥
+:*:\boom::💥
+:*:\bomb::💣
+:*:\sad::☹️
+:*:\:(::☹️
+:*:\scared::😱
+:*:\lightning::⚡
+:*:\painful::😣
+:*:\sleepy::🥱
+:*:\exploding head::🤯
+:*:\swear::🤬
+:*:\hot::🥵
+:*:\cold::🥶
+:*:\sunglass::😎
+:*:\money::🤑
+:*:\sick::😷
+:*:\fever::🤒
+:*:\injured::🤕
+:*:\nausea::🤢
+:*:\joker::🤡
+:*:\lie::🤥
+:*:\shh::🤫
+:*:\alien::👽
+:*:\skeleton::☠
+:*:\monkey::🐵
+:*:\tup::👍
+:*:\tdown::👎
+:*:\flex::💪
+:*:\hehe::😁
+:*:\wink::😉
+:*:\shy::😊
 ;warmth?
-::\exciting::🤩
-::\shutup::🤐
-::\relief::😌
-::\toughout::😛
-::\cowboy::🤠
-::angel::😇
-::\shy::🤭
-::\Demon::👿
-::\demon::😈
-::\ghost::👻
-::\partyface::🥳
+:*:\exciting::🤩
+:*:\shutup::🤐
+:*:\relief::😌
+:*:\toughout::😛
+:*:\cowboy::🤠
+:*:angel::😇
+:*:\shy::🤭
+:*:\Demon::👿
+:*:\demon::😈
+:*:\ghost::👻
+:*:\partyface::🥳
 
 ; Animal heads ---------------------------
-::\cathead::🐱
-::\catlaugh::😺
-::\catsmile::😸
-::\catlol::😹
-::\catlove::😻
-::\catevillaugh::😼
-::\catkiss::😽
-::\catscared::🙀
-::\catcry::😿
-::\catangry::😾
-::\monkeyeyes::🙈
-::\monkeyears::🙉
-::\monkeymouth::🙊
-::\doghead::🐶
-::\wolfhead::🐺
-::\lionhead::🦁
-::\tigerhead::🐯
-::\deerhead::🦒
-::\foxhead::🦊
-::\raccoonhead::🦝
-::\cowhead::🐮
-::\pighead::🐷
-::\wildboarhead::🐗
-::\rathead::🐭
-::\mousehead::🐭
-::\hamsterhead::🐹
-::\rabithead::🐰
-::\bearhead::🐻
-::\koalahead::🐨
-::\pandahead::🐼
-::\froghead::🐸
-::\zebrahead::🦓
-::\horsehead::🐴
-::\unicornhead::🦄
-::\chickenhead::🐔
-::\dragenhead::🐲
-::\pignose::🐽
+:*:\cathead::🐱
+:*:\catlaugh::😺
+:*:\catsmile::😸
+:*:\catlol::😹
+:*:\catlove::😻
+:*:\catevillaugh::😼
+:*:\catkiss::😽
+:*:\catscared::🙀
+:*:\catcry::😿
+:*:\catangry::😾
+:*:\monkeyeyes::🙈
+:*:\monkeyears::🙉
+:*:\monkeymouth::🙊
+:*:\doghead::🐶
+:*:\wolfhead::🐺
+:*:\lionhead::🦁
+:*:\tigerhead::🐯
+:*:\deerhead::🦒
+:*:\foxhead::🦊
+:*:\raccoonhead::🦝
+:*:\cowhead::🐮
+:*:\pighead::🐷
+:*:\wildboarhead::🐗
+:*:\rathead::🐭
+:*:\mousehead::🐭
+:*:\hamsterhead::🐹
+:*:\rabithead::🐰
+:*:\bearhead::🐻
+:*:\koalahead::🐨
+:*:\pandahead::🐼
+:*:\froghead::🐸
+:*:\zebrahead::🦓
+:*:\horsehead::🐴
+:*:\unicornhead::🦄
+:*:\chickenhead::🐔
+:*:\dragenhead::🐲
+:*:\pignose::🐽
 ; animals
-::\petfootprint::🐾
-::\monkeysit::🐒
-::\chimpanzee::🦍
-::\orangutan::🦧
-::\dogyellow::🦮
-::\dogorange::🐕‍🦺
-::\poodle::🐩
-::\dog::🐕
-::\cat::🐈
-::\tiger::🐅
-::\bobcat::🐆
-::\horse::🐎
-::\deer::🦌
-::\rhino::🦏
+:*:\petfootprint::🐾
+:*:\monkeysit::🐒
+:*:\chimpanzee::🦍
+:*:\orangutan::🦧
+:*:\dogyellow::🦮
+:*:\dogorange::🐕‍🦺
+:*:\poodle::🐩
+:*:\dog::🐕
+:*:\cat::🐈
+:*:\tiger::🐅
+:*:\bobcat::🐆
+:*:\horse::🐎
+:*:\deer::🦌
+:*:\rhino::🦏
 ; other emojis
-::\soccer::⚽
-::\volleball::🏐
-::\basketball::🏀
-::\diamond::💎
-::\football::🏈
-::\dice::🎲
-::\saxophone::🎷
-::\trumpet::🎺
-::\guitar::🎸
-::\violin::🎻
-::piano::🎹
-::\drum::🥁
-::\postal horn::📯
-::\postalhorn::📯
+:*:\soccer::⚽
+:*:\volleball::🏐
+:*:\basketball::🏀
+:*:\diamond::💎
+:*:\football::🏈
+:*:\dice::🎲
+:*:\saxophone::🎷
+:*:\trumpet::🎺
+:*:\guitar::🎸
+:*:\violin::🎻
+:*:piano::🎹
+:*:\drum::🥁
+:*:\postal horn::📯
+:*:\postalhorn::📯
 
-;weather, transportation
-::\water::💧
-::\snow::❄
+;*weather, transportation
+:*:\water::💧
+:*:\snow::❄
 
 #Hotstring C
 ; other ----------------------------
-::\cel::℃
-::\fah::℉
-::\m^2::㎡
-::\pound::£
-::\islam::☪
-::\communism::☭
-::\radioactive::☢
-::\biohazard::☣
-::\warn::⚠
+:*:\cel::℃
+:*:\fah::℉
+:*:\m^2::㎡
+:*:\pound::£
+:*:\islam::☪
+:*:\communism::☭
+:*:\radioactive::☢
+:*:\biohazard::☣
+:*:\warn::⚠
 
 ; space
-::\earth::♁
-::\mercury::☿
-::\moon::🌚
+:*:\earth::♁
+:*:\mercury::☿
+:*:\moon::🌚
 
 ; chess
-::\Wking::♚
-::\Bking::♔
-::\Wqueen::♛
-::\Bqueen::♕
-::\Wrook::♜
-::\Brook::♖
-::\Wpawn::♟
-::\Bpawn::♙
-::\Wknight::♞
-::\Bknight::♘
-::\Wbishop::♝
-::\Bbishop::♗
+:*:\Wking::♚
+:*:\Bking::♔
+:*:\Wqueen::♛
+:*:\Bqueen::♕
+:*:\Wrook::♜
+:*:\Brook::♖
+:*:\Wpawn::♟
+:*:\Bpawn::♙
+:*:\Wknight::♞
+:*:\Bknight::♘
+:*:\Wbishop::♝
+:*:\Bbishop::♗
 
 ; wtf r these genders
-::\male::♂
-::\female::♀
-::\heterosexual::⚤
-::\trans::⚧
-::\lesbian::⚢
-::\gay::⚣
-::\bigender::⚥
-::\trans1::⚨
-::\trans2::⚦
-::\trans3::⚩
+:*:\male::♂
+:*:\female::♀
+:*:\heterosexual::⚤
+:*:\trans::⚧
+:*:\lesbian::⚢
+:*:\gay::⚣
+:*:\bigender::⚥
+:*:\trans1::⚨
+:*:\trans2::⚦
+:*:\trans3::⚩
 
 ; shapes
-::\star::★
-::\4star::✦
-::\heart::❤
+:*:\star::★
+:*:\4star::✦
+:*:\heart::❤
 
 ; symbols
-::\Upsidedownqmark::¿
-::\checkmark::✔
-::\crossmark::✗
-::\Checkmark::✅
-::\Crossmark::❌
-::\flag::⚑
-::\qmark::❔
-::\Qmark::❓
-::\!!::‼
+:*:\Upsidedownqmark::¿
+:*:\checkmark::✔
+:*:\crossmark::✗
+:*:\Checkmark::✅
+:*:\Crossmark::❌
+:*:\flag::⚑
+:*:\qmark::❔
+:*:\Qmark::❓
+:*:\!!::‼
 
 ; emoticons
-::\E fliptable::(╯‵□′)╯︵┻━┻
-::\E shocked::(っ °Д °;)っ
-::\E greeting::（￣︶￣）↗
-::\E slaphead::(ノへ￣、)
-::\E angry::(╬▔皿▔)╯
-::\nonsense::~%?…,# *'☆&℃$︿★?
-::\E wow::(★ ω ★)
-::\E nervous::(っ °Д °;)っ
-::\E idk::¯\(°_o)/¯
-::\E catconfuse::(´･ω･`)?
-::\E sleeping::(￣o￣) . z Z
-::\E joyful::\(@^0^@)/
-::\E glad::O(∩_∩)O
-::\E money::( $ _ $ )
+:*:\E fliptable::(╯‵□′)╯︵┻━┻
+:*:\E shocked::(っ °Д °;)っ
+:*:\E greeting::（￣︶￣）↗
+:*:\E slaphead::(ノへ￣、)
+:*:\E angry::(╬▔皿▔)╯
+:*:\nonsense::~%?…,# *'☆&℃$︿★?
+:*:\E wow::(★ ω ★)
+:*:\E nervous::(っ °Д °;)っ
+:*:\E idk::¯\(°_o)/¯
+:*:\E catconfuse::(´･ω･`)?
+:*:\E sleeping::(￣o￣) . z Z
+:*:\E joyful::\(@^0^@)/
+:*:\E glad::O(∩_∩)O
+:*:\E money::( $ _ $ )
 
 ; 彩蛋
-::\author::Made by - Salty Fish; Edited by - Euler
-::\i wanna learn css::
+:*:\author::Made by - Salty Fish; Edited by - Euler
+:*:\i wanna learn css::
 {
     Run "https://euler-teach-literacy.github.io/My-first-web/"
 }
@@ -479,7 +476,7 @@ HideToolTip() {
 {
     Run "https://www.virtualbox.org/wiki/Downloads/"
 }
-::\wiki ::   
+::\Wiki ::   
 {
     Run "https://en.wikipedia.org/wiki/"
 }
@@ -496,9 +493,26 @@ HideToolTip() {
 {
     Run "https://eaglercraft.com/play/?version=1.8.8-wasm"
 }
-::\git::
+:b0:\github::
+:b0:\git::
 {
     Run "https://github.com/"
+}
+::\pornhub::
+{
+    Run "https://www.pornhub.com"
+}
+::\youtube::
+{
+    Run "https://youtube.com"
+}
+::\bilibili::
+{
+    Run "https://bilibili.com"
+}
+::\amazon::
+{
+    Run "https://amazon.com"
 }
 ;::\bongo::
 ;{
@@ -530,7 +544,6 @@ HideToolTip() {
     text := StrReplace(text, "", "_")
     Run "https://www.google.com/search?q=" text "&oq=" text
 }
-
 
 ;testing
 
@@ -797,3 +810,100 @@ CloseMenu() {
     menuGui := ""
 }
 
+; click to scroll ---------------------------------
+toggle := false
+db_toggle := false  ; multi click
+lastAltTime := 0
+
+~LAlt::{
+    global lastAltTime, db_toggle
+    currentTime := A_TickCount
+
+    if (currentTime - lastAltTime < 300) {
+        db_toggle := !db_toggle
+        ToolTip("Toggle is now " . (db_toggle ? "ON" : "OFF"))
+        SetTimer(RemoveToolTip, -1000)
+        lastAltTime := 0
+    } else {
+        lastAltTime := currentTime
+    }
+}
+
++!F2::{  ; Shift + Alt + F2 toggles on/off
+    global toggle
+    toggle := !toggle
+    ToolTip("Toggle: " . toggle )
+    SetTimer(RemoveToolTip, -1000)
+return
+}
+WheelUp::{
+    global toggle
+    if (toggle) {
+        Click ("Right")
+    }
+    else {
+        Send "{WheelUp}"
+    }
+return
+}
+
+WheelDown::{
+    global toggle
+    if (toggle) {
+        click()
+        if (db_toggle) {
+            loop 22
+                Click()
+        }
+    }
+    else {
+        Send "{WheelDown}"
+    }
+return
+}
+
+LButton::{
+    global toggle
+    if (toggle){
+        ; MsgBox, You left-clicked!
+        Send "{WheelUp}"
+    }
+    else{
+        ; Pass through the down event so dragging works
+        Send "{LButton down}"
+        KeyWait("LButton")  ; Wait for button release
+        Send "{LButton up}"
+    }
+return
+}
+
+RButton::{
+    global toggle
+    if (toggle){
+        ; MsgBox, You right-clicked!
+        Send "{WheelDown}"
+        }
+    else {
+        click ("Right")
+    }
+return
+}
+
+MButton::{
+    global toggle
+    if (toggle){
+        Send "{LButton down}"
+        KeyWait("MButton")  ; Wait for button release
+        Send "{LButton up}"   
+    }
+    else{
+        ; Pass through the down event so dragging works
+        Send "{MButton down}"
+        KeyWait("MButton")  ; Wait for button release
+        Send "{MButton up}"
+    }
+}
+
+RemoveToolTip() {
+    ToolTip()
+}

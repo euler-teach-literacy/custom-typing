@@ -1,4 +1,4 @@
-# custom-typing
+# custom-typing v3.1
 
 this ahk file have multiple functions and we are still trying to add more functions! Download the exe file if you do not know how to execute it (the exe file might not be updated on time)
 

@@ -355,6 +355,11 @@ lastAltTime := 0
     toggle := !toggle
     ToolTip("Toggle: " . toggle )
     SetTimer(RemoveToolTip, -1000)
+    
+    if !toggle {
+        toggle := false
+        db_toggle := false
+    }
 return
 }
 WheelUp::{
@@ -405,7 +410,9 @@ RButton::{
         Send "{WheelDown}"
         }
     else {
-        click ("Right")
+        Send "{RButton down}"
+        KeyWait("RButton")  ; Wait for button release
+        Send "{RButton up}"
     }
 return
 }
@@ -920,8 +927,17 @@ SpamPaste(){
     spam_mode := !spam_mode
     ToolTip("Spammode: " . spam_mode)
     SetTimer(RemoveToolTip, -1000)
-}
 
+    
+    if !spam_mode {
+        SetTimer(SpamClick, 0)
+        SetTimer(CustomSpam, 0)
+        F1_toggle := false
+        F2_toggle := false
+        F3_toggle := false
+    }
+}
+#HotIf spam_mode
 F1:: {          ;spam click
     global F1_toggle, spam_mode
     if !spam_mode

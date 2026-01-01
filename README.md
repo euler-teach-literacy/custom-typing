@@ -33,7 +33,7 @@ this ahk file have multiple functions and we are still trying to add more functi
     - F2: Spamming your clipboard
     - F3: custom spam, which you can type what you want to spam
 10. You can play games by typing \game (made game GUI)
-11. Some special properties are waiting for you to discover! 
+11. Some features are waiting for you to discover! 
 # Updates coming up: 
 - better website wheel
 - more emojis
@@ -42,7 +42,7 @@ this ahk file have multiple functions and we are still trying to add more functi
 - ???
 
 # Updates of v3.6: 
-- Discovered new bug and decided to keep it as special property
+- Discovered new bug and decided to keep it as a feature
 
 ### made by - Salty fish and Euler
 #### salty-salted-fish & euler-teach-literacy 

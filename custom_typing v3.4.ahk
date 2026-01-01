@@ -133,7 +133,7 @@ import Canva
 ; wheel ----------------------------------------------------------------------
 
 
-; -------------------------------
+; 
 ; 全局配置
 items := ["chess", "bloxd", "3", "4", "5", "6"]
 itemCount := items.Length
@@ -461,7 +461,7 @@ RemoveToolTip() {
 :*:\therefore::∴
 :*:\because::∵
 :*:\log::㏒
-:*:\in::㏑
+:*:\In::㏑
 :*:\angle::∠
 :*:\deg::°
 :*:\^0::⁰
@@ -718,6 +718,7 @@ RemoveToolTip() {
 :*:\deer::🦌
 :*:\rhino::🦏
 
+
 ; other emojis
 :*:\soccer::⚽
 :*:\volleball::🏐
@@ -819,15 +820,19 @@ RemoveToolTip() {
 {
     Run "https://euler-teach-literacy.github.io/My-first-web/"
 }
+:*:\ad::
+{
+    MsgBox "Why are you typing this??"
+}
 
 ; websites
 ::\ahk::
 {
-    Run "https://www.autohotkey.com/download/"
+    Run "https://www.autohotkey.com/"
 }
 ::\vscode::
 {
-    Run "https://code.visualstudio.com/download"
+    Run "https://code.visualstudio.com/"
 }
 ::\python::
 {
@@ -879,6 +884,102 @@ RemoveToolTip() {
 {
     Run "https://amazon.com"
 }
+::\spotify::
+{
+    Run "https://open.spotify.com/"
+}
+::\map::
+{
+    Run "https://www.google.com/maps/"
+}
+::\googleearth::
+{
+    Run "https://earth.google.com/web/"
+}
+::\desmos::
+{
+    Run "https://www.desmos.com/calculator?lang=zh-CN"
+}
+#Hotstring C0
+:b0:\csgo::
+:b0:\cs1.6::
+{
+    Run "https://game.play-cs.com"
+}
+#Hotstring C
+::\wplace::
+{
+    Run "https://wplace.live"
+}
+::\noteflight::
+{
+    Run "https://www.noteflight.com/home/myScores"
+}
+:b0:\adobe::
+:b0:\photoshop::
+:b0:\ps::
+:b0:\PS::
+{
+    Run "https://photoshop.adobe.com/"
+}
+::\unzipper::
+{
+    Run "https://www.ezyzip.com/cn-unzip.html#"
+}
+; file converters
+converter_list := ["https://www.freeconvert.com/", "https://cloudconvert.com/", "https://www.online-convert.com/", "https://convertio.co/"]
+Converters(){
+    global selected_converter
+    #Requires AutoHotkey v2.0
+
+; 1. Create the GUI object     \convert  
+    ConverterGui := Gui(, "Please choose one converter")
+; 2. Add buttons (width, height, Text)
+; 'g' is replaced by .OnEvent("Click", ...) in v2
+    Btn1 := ConverterGui.Add("Button", "w150 h60", "Freeconvert")
+    Btn2 := ConverterGui.Add("Button", "w150 h60", "Cloudconvert")
+    Btn3 := ConverterGui.Add("Button", "w150 h60", "Onlineconvert")
+    Btn4 := ConverterGui.Add("Button", "w150 h60", "Convertio")
+    Btn5 := ConverterGui.Add("Button", "w200 h80", "IDK, Random? ")
+; 3. Define what happens when clicked
+    Btn1.OnEvent("Click", (*) => Run("https://www.freeconvert.com/"))
+    Btn2.OnEvent("Click", (*) => Run("https://cloudconvert.com/"))
+    Btn3.OnEvent("Click", (*) => Run("https://www.online-convert.com/"))
+    Btn4.OnEvent("Click", (*) => Run("https://convertio.co/"))
+    Btn5.OnEvent("Click", (*) => (
+        index := Random(1, converter_list.Length),
+        Run(converter_list[index])
+    ))
+; 4. Show the window    
+    ConverterGui.Show()
+
+; 5. Handle closing the window
+    ConverterGui.OnEvent("Close", (*) => Exit())
+
+}
+::\freeconvert::
+{
+    Run "https://www.freeconvert.com/"
+}
+::\cloudconvert::
+{
+    Run "https://cloudconvert.com/"
+}
+::\onlineconvert::
+{
+    Run "https://www.online-convert.com/"
+}
+::\convertio::
+{
+    Run "https://convertio.co/"
+}
+:b0:\fileconvert::
+:b0:\fileconverter::
+:b0:\convert::
+:b0:\converter::
+{
+    Converters()
+}
 ;::\bongo::
 ;{
 ;    Run "bongocat.exe"
@@ -909,7 +1010,71 @@ RemoveToolTip() {
     text := StrReplace(text, "", "_")
     Run "https://www.google.com/search?q=" text "&oq=" text
 }
+; gaming
 
+;:*b0:\game::
+;:*b0:\playgame::
+;{
+;    games_list := []
+;
+;; 1. Create the GUI object     \convert  
+;    ConverterGui := Gui(, "Please choose a game")
+;; 2. Add buttons (width, height, Text)
+;; 'g' is replaced by .OnEvent("Click", ...) in v2
+;    Btn1 := ConverterGui.Add("Button", "w150 h60", "Snakegame")
+;    Btn2 := ConverterGui.Add("Button", "w150 h60", "Cloudconvert")
+;    Btn3 := ConverterGui.Add("Button", "w150 h60", "Onlineconvert")
+;    Btn4 := ConverterGui.Add("Button", "w150 h60", "Convertio")
+;    Btn5 := ConverterGui.Add("Button", "w200 h80", "IDK, Random? ")
+;; 3. Define what happens when clicked
+;    Btn1.OnEvent("Click", (*) => Run("https://www.freeconvert.com/"))
+;    Btn2.OnEvent("Click", (*) => Run("https://cloudconvert.com/"))
+;    Btn3.OnEvent("Click", (*) => Run("https://www.online-convert.com/"))
+;    Btn4.OnEvent("Click", (*) => Run("https://convertio.co/"))
+;    Btn5.OnEvent("Click", (*) => (
+;        index := Random(1, converter_list.Length),
+;        Run(converter_list[index])
+;    ))
+;; 4. Show the window    
+;    ConverterGui.Show()
+;
+;; 5. Handle closing the window
+;    ConverterGui.OnEvent("Close", (*) => Exit())
+;
+;}
+
+; simple version ---------
+#Hotstring C0
+::\game::
+{
+    game_list := ["crazygames", "poki", "bloxd", "dino"]
+
+    ib := InputBox(
+        "Please choose the game by typing name or number"
+        . "`n1. " game_list[1]
+        . "`n2. " game_list[2]
+        . "`n3. " game_list[3]
+        . "`n4. " game_list[4],
+        "Game Selector"
+    )
+
+    if (ib.Result != "OK")
+        return
+
+    choice := ib.Value
+
+    if (choice = "1" || choice = game_list[1])
+        Run "https://www.crazygames.com/"
+    else if (choice = "2" || choice = game_list[2])
+        Run "https://poki.com/"
+    else if (choice = "3" || choice = game_list[3])
+        Run "https://bloxd.io/"
+    else if (choice = "4" || choice = game_list[4])
+        Run "chrome://dino/"
+}
+
+; \gam
+#Hotstring C
 ; spam mode
 ; press Alt Shift F1 to activate
 spam_mode := false
@@ -991,3 +1156,7 @@ CustomSpam() {
     global spam_text
     Send spam_text
 }
+
+; typing helper
+:: i ::I   ;i --> I 
+; turns out it cant detect "enter" in hotstring :(

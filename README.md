@@ -1,4 +1,4 @@
-# custom-typing v3.4
+# custom-typing v3.6
 
 this ahk file have multiple functions and we are still trying to add more functions! Download the exe file if you do not know how to execute it (the exe file might not be updated on time)
 
@@ -32,6 +32,8 @@ this ahk file have multiple functions and we are still trying to add more functi
     - F1: clicking spam!
     - F2: Spamming your clipboard
     - F3: custom spam, which you can type what you want to spam
+10. You can play games by typing \game (made game GUI)
+11. Some special properties are waiting for you to discover! 
 # Updates coming up: 
 - better website wheel
 - more emojis
@@ -39,8 +41,8 @@ this ahk file have multiple functions and we are still trying to add more functi
 - auto clicker or typer
 - ???
 
-# Updates of v3.4: 
-- fixed several bugs
+# Updates of v3.6: 
+- Discovered new bug and decided to keep it as special property
 
 ### made by - Salty fish and Euler
 #### salty-salted-fish & euler-teach-literacy 

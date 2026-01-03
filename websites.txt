@@ -1,0 +1,36 @@
+\ahk        | run | https://www.autohotkey.com/
+\author     | msg | Made by - Salty Fish; Edited by - Euler
+\i wanna learn css | run |  https://euler-teach-literacy.github.io/My-first-web/
+\ad         | msg | Why are you typing this??
+\ahk        | run | https://www.autohotkey.com/
+\vscode     | run | https://code.visualstudio.com/
+\python     | run | https://www.python.org/downloads/
+\kali       | run | https://www.kali.org/get-kali/#kali-platforms/
+\oracle     | run | https://www.virtualbox.org/wiki/Downloads/
+\Wiki       | run | https://en.wikipedia.org/wiki/
+\chess      | run | https://chess.com/
+\bloxd      | run | https://www.bloxd.io/
+\mc1.8      | run | https://eaglercraft.com/play/?version=1.8.8-wasm/
+\github     | run | https://github.com/
+\git        | run | https://github.com/
+\pornhub    | run | https://www.pornhub.com/
+\youtube    | run | https://youtube.com
+\bilibili   | run | https://bilibili.com
+\amazon     | run | https://amazon.com
+\spotify    | run | https://open.spotify.com/
+\map        | run | https://www.google.com/maps/
+\googleearth| run | https://earth.google.com/web/
+\desmos     | run | https://www.desmos.com/calculator?lang=zh-CN
+\csgo       | run | https://game.play-cs.com/
+\cs1.6      | run | https://game.play-cs.com/
+\wplace     | run | https://wplace.live
+\noteflight | run | https://www.noteflight.com/home/myScores
+\adobe      | run | https://photoshop.adobe.com/
+\photoshop  | run | https://photoshop.adobe.com/
+\ps         | run | https://photoshop.adobe.com/
+\PS         | run | https://photoshop.adobe.com/
+\unzipper   | run | https://www.ezyzip.com/cn-unzip.html#/
+\freeconvert| run | "https://www.freeconvert.com/"
+\cloudconvert| run | "https://cloudconvert.com/"
+\onlineconvert| run | "https://www.online-convert.com/"
+\convertio  | run | "https://convertio.co/"

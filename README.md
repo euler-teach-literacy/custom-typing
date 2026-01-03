@@ -1,4 +1,4 @@
-# custom-typing v3.6
+# custom-typing v3.7
 
 this ahk file have multiple functions and we are still trying to add more functions! Download the exe file if you do not know how to execute it (the exe file might not be updated on time)
 
@@ -33,7 +33,8 @@ this ahk file have multiple functions and we are still trying to add more functi
     - F2: Spamming your clipboard
     - F3: custom spam, which you can type what you want to spam
 10. You can play games by typing \game (made game GUI)
-11. Some features are waiting for you to discover! 
+11. spectating your friends(still developing)
+12. Some features are waiting for you to discover! 
 # Updates coming up: 
 - better website wheel
 - more emojis
@@ -41,8 +42,9 @@ this ahk file have multiple functions and we are still trying to add more functi
 - auto clicker or typer
 - ???
 
-# Updates of v3.6: 
-- Discovered new bug and decided to keep it as a feature
+# Updates of v3.7: 
+- Lots of stuff, made it easier to edit
+- discovered new bug: +!F1 make app crash
 
 ### made by - Salty fish and Euler
 #### salty-salted-fish & euler-teach-literacy 

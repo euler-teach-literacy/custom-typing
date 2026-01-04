@@ -1,4 +1,4 @@
-# custom-typing v3.7
+# custom-typing v3.8
 
 this ahk file have multiple functions and we are still trying to add more functions! Download the exe file if you do not know how to execute it (the exe file might not be updated on time)
 
@@ -42,9 +42,10 @@ this ahk file have multiple functions and we are still trying to add more functi
 - auto clicker or typer
 - ???
 
-# Updates of v3.7: 
+# Updates of v3.8: 
 - Lots of stuff, made it easier to edit
 - discovered new bug: +!F1 make app crash
+- fixed GUI
 
 ### made by - Salty fish and Euler
 #### salty-salted-fish & euler-teach-literacy 

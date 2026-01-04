@@ -1,8 +1,7 @@
 #Requires AutoHotkey v2.0
 #Hotstring C
 #SingleInstance Force
-version := 3.7
-Run "custom_typing_2.ahk"
+version := "3.8.0"
 ; admin
 ^+r:: {
     MsgBox("Script is reloading...")
@@ -10,8 +9,6 @@ Run "custom_typing_2.ahk"
 }
 ^+e::{
     ExitApp()
-    RunWait('taskkill /IM ""AutoHotkey64.exe"" /FI ""WINDOWTITLE eq custom_typing_2.ahk"" /F')
-    
 }
 ; ctrl C
 
@@ -65,15 +62,7 @@ HideToolTip() {
     }
 }
 
-;testing
-
-;&gs_lcrp=EgZjaHJvbWUyDAgAEEUYORjJAxiABDIOCAEQRRgnGDsYgAQYigUyBggCECMYJzIGCAMQRRg7MgcIBBAAGIAEMgYIBRBFGDwyBggGEEUYPTIGCAcQRRg80gEHOTkwajBqN6gCALACAA&sourceid=chrome&ie=UTF-8
-;&rlz=1C1CHBD_enCA1166CA1166&oq=what
-;&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIMCAEQIxgnGIAEGIoFMgYIAhBFGDsyBggDEEUYOzIGCAQQIxgnMgYIBRBFGDwyBggGEEUYPDIGCAcQRRg80gEIMjUwM2owajeoAgCwAgA&sourceid=chrome&ie=UTF-8
-
 ; html / codings
-::\div::<div class="">
-
 ::\css::
 {
    SendText "
@@ -127,207 +116,190 @@ import Flask
 import Canva
 )"
 }
-
-; wheel ----------------------------------------------------------------------
-
-
-; 
-; 全局配置
-items := ["chess", "bloxd", "3", "4", "5", "6"]
+:*:\version::{
+    MsgBox ("current version: " . version)
+}
+; wheel --------------------------------------------------------------------
+items := ["bloxd", "Two", "Three", "Four", "Five", "version"]
 itemCount := items.Length
-radius := 120
-deadZone := 15
+radius := 90
+size := radius * 2 + 40
+
+normalColor := "AAAAAA"
+hoverColor  := "4FC3F7"
+
 currentIndex := 0
-menuGui := ""
-labels := []
+controls := []
+animations := { list: [], running: false }
 
-; -------------------------------
-!w::OpenRadialMenu()  ; Alt + W 打开
-
-; -------------------------------
-OpenRadialMenu() {
-    global menuGui, centerX, centerY, labels
-
-    MouseGetPos &centerX, &centerY
-
-    menuGui := Gui("+AlwaysOnTop -Caption +ToolWindow +E0x20")
-    menuGui.BackColor := "1e1e1e"
-    menuGui.SetFont("s10 cFFFFFF", "Segoe UI")
-
-    labels := []
-    DrawItems()
-
-    menuGui.Show("x" centerX-radius " y" centerY-radius " w" radius*2 " h" radius*2)
-
-    SetTimer(UpdateSelection, 5)
-
-    Hotkey("Alt Up", Confirm, "On")  ; 松开 Alt 自动确认
-    Hotkey("Esc", Cancel, "On")
+;================ 热键 ================
+!w::
+{
+    MouseGetPos &mx, &my
+    ShowMenu(mx, my)
 }
 
-; -------------------------------
-DrawItems() {
-    global items, itemCount, radius, menuGui, labels
+~Alt Up::
+{
+    global currentIndex
+    if currentIndex = 1{
+        Run "https://bloxd.io"
+    }
+    else if currentIndex = 2{
+        MsgBox ("you chose 2")
+    }
+    else if currentIndex = 3{
+        MsgBox ("you chose 3")
+    }
+    else if currentIndex = 4{
+        MsgBox ("you chose 4")
+    }
+    else if currentIndex = 5{
+        MsgBox ("you chose 5")
+    }
+    else if currentIndex = 6{
+        MsgBox ("current version: " . version)
+    }
+    HideMenu()
+}
 
-    angleStep := 360 / itemCount
-    Loop itemCount {
-        angle := (A_Index-1)*angleStep - 90
-        rad := angle * 0.0174533
-        x := radius + Cos(rad)*(radius-30)
-        y := radius + Sin(rad)*(radius-30)
+;================ GUI ================
+ShowMenu(mx, my) {
+    global mygui, size
+    mygui := Gui("+AlwaysOnTop -Caption +ToolWindow")
+    mygui.BackColor := "202020"
+    mygui.Show("NA x" (mx - size//2) " y" (my - size//2) " w" size " h" size)
+    BuildItems()
+    SetTimer(UpdateSelection, 10)
+}
 
-        txt := menuGui.AddText(
-            Format("x{} y{} Center w70 vItem{}", x-35, y-12, A_Index),
-            items[A_Index]
-        )
-        labels.Push(txt)
+HideMenu() {
+    SetTimer(UpdateSelection, 0)
+    try mygui.Destroy()
+}
+
+;================ 构建圆盘 ================
+BuildItems() {
+    global mygui, controls, items, radius, size, normalColor
+    controls := []
+    step := 360 / items.Length
+
+    Loop items.Length {
+        ang := (A_Index - 1) * step
+        rad := ang * 0.0174533
+        x := size/2 + Cos(rad)*radius - 20
+        y := size/2 - Sin(rad)*radius - 10
+        ctrl := mygui.AddText("x" x " y" y " w40 Center c" normalColor, items[A_Index])
+        controls.Push(ctrl)
     }
 }
 
-; -------------------------------
-lastAngle := 0
-
+;================ 鼠标检测 ================
 UpdateSelection() {
-    global centerX, centerY, currentIndex, itemCount, deadZone, labels, lastAngle
+    global mygui, size, itemCount, currentIndex
 
     MouseGetPos &mx, &my
-    dx := mx - centerX
-    dy := my - centerY
+    WinGetPos &gx, &gy,,, mygui.Hwnd
+
+    cx := gx + size/2
+    cy := gy + size/2
+
+    dx := mx - cx
+    dy := cy - my    ; 屏幕 → 数学坐标（关键）
 
     dist := Sqrt(dx*dx + dy*dy)
-    if dist < deadZone {
-        Highlight(0)
+    if dist < 25 {
+        SetHover(0)
         return
     }
 
-    angle := Mod(DllCall("msvcrt\atan2", "double", dy, "double", dx, "double") * 57.2957795 + 450, 360)
+    angle := Mod(
+        DllCall("msvcrt\atan2", "double", dy, "double", dx, "double") * 57.2958 + 360,
+        360
+    )
 
-    ; 如果鼠标角度变化太小，不切换
-    if Abs(angle - lastAngle) < 5  ; 阈值可以调
-        return
-
-    lastAngle := angle
-    index := Floor(angle / (360/itemCount)) + 1
-    Highlight(index)
+    index := Floor(angle / (360 / itemCount)) + 1
+    SetHover(index)
 }
 
-; -------------------------------
-Highlight(index) {
-    global currentIndex, labels
+;================ 高亮控制 ================
+SetHover(index) {
+    global currentIndex, controls
 
     if index = currentIndex
         return
 
-    ; 恢复旧选中
-    if currentIndex {
-        AnimateColor(labels[currentIndex], 0x00FFAA, 0xFFFFFF)
-        labels[currentIndex].SetFont("s10")
-    }
-
-    ; 新选中
-    if index {
-        AnimateColor(labels[index], 0xFFFFFF, 0x00FFAA)
-        labels[index].SetFont("s13")
-    }
+    if currentIndex > 0
+        AnimateColor(controls[currentIndex], hoverColor, normalColor)
 
     currentIndex := index
+
+    if currentIndex > 0
+        AnimateColor(controls[currentIndex], normalColor, hoverColor)
 }
 
-; -------------------------------
-; 全局动画管理对象
-animations := {list: [], running: false}
-
-AnimateColor(ctrl, fromColor, toColor, duration := 120) {
+;================ 动画系统 ================
+AnimateColor(ctrl, from, to, duration := 150) {
     global animations
-    start := A_TickCount
-    animations.list.Push({ctrl: ctrl, from: fromColor, to: toColor, start: start, duration: duration})
+    animations.list.Push({
+        ctrl: ctrl,
+        from: from,
+        to: to,
+        start: A_TickCount,
+        duration: duration
+    })
+
     if !animations.running {
         animations.running := true
         SetTimer(UpdateAnimations, 16)
     }
 }
 
-UpdateAnimations(*) {
+UpdateAnimations() {
     global animations
-    now := A_TickCount
     finished := []
 
     for i, anim in animations.list {
-        t := (now - anim.start) / anim.duration
-        if (t >= 1) {
+        t := (A_TickCount - anim.start) / anim.duration
+        if t >= 1 {
             anim.ctrl.SetFont("c" anim.to)
             finished.Push(i)
         } else {
             anim.ctrl.SetFont("c" LerpColor(anim.from, anim.to, t))
         }
     }
-
-    ; 删除完成的动画
-    
     Loop finished.Length {
-    idx := finished[finished.Length - A_Index + 1]
-    animations.list.RemoveAt(idx)
+        idx := finished[finished.Length - A_Index + 1]
+        animations.list.RemoveAt(idx)
     }
-    ;easier understanding
     ;for i := finished.Length; i >= 1; i-- {
-    ;animations.list.RemoveAt(finished[i])
+    ;    animations.list.RemoveAt(finished[i])
     ;}
 
-
-    ; 如果没有动画了，关闭定时器
     if animations.list.Length = 0 {
         SetTimer(UpdateAnimations, 0)
         animations.running := false
     }
 }
 
+;================ 颜色插值 ================
 LerpColor(c1, c2, t) {
-    r1 := (c1 >> 16) & 0xFF
-    g1 := (c1 >> 8) & 0xFF
-    b1 := c1 & 0xFF
+    r1 := "0x" SubStr(c1,1,2)
+    g1 := "0x" SubStr(c1,3,2)
+    b1 := "0x" SubStr(c1,5,2)
+    r2 := "0x" SubStr(c2,1,2)
+    g2 := "0x" SubStr(c2,3,2)
+    b2 := "0x" SubStr(c2,5,2)
 
-    r2 := (c2 >> 16) & 0xFF
-    g2 := (c2 >> 8) & 0xFF
-    b2 := c2 & 0xFF
-
-    r := Round(r1 + (r2 - r1) * t)
-    g := Round(g1 + (g2 - g1) * t)
-    b := Round(b1 + (b2 - b1) * t)
-
-    return Format("{:02X}{:02X}{:02X}", r, g, b)
-}
-; -------------------------------
-Confirm(*) {
-    global items, currentIndex
-    CloseMenu()
-    if currentIndex = 0
-        return
-
-    choice := items[currentIndex]
-
-    switch choice {
-        case "chess": Run "https://www.chess.com"
-        case "bloxd": MsgBox "https://bloxd.io"
-        case "3": MsgBox "3"
-        case "4": MsgBox "4"
-        case "5": MsgBox "5"
-        case "6": MsgBox "6"
-    }
+    return Format("{:02X}{:02X}{:02X}"
+        , Round(r1 + (r2-r1)*t)
+        , Round(g1 + (g2-g1)*t)
+        , Round(b1 + (b2-b1)*t))
 }
 
-; -------------------------------
-Cancel(*) {
-    CloseMenu()
-}
 
-; -------------------------------
-CloseMenu() {
-    global menuGui
-    SetTimer(UpdateSelection, 0)
-    Hotkey("Alt Up", "Off")
-    menuGui.Destroy()
-    menuGui := ""
-}
+
+
 #Hotstring C
 ; hotkstrings for typing ---------------------------------------------------
 jsonText := FileRead("hotstrings.txt", "UTF-8")
@@ -386,8 +358,6 @@ DoAction(action, param) {
 converter_list := ["https://www.freeconvert.com/", "https://cloudconvert.com/", "https://www.online-convert.com/", "https://convertio.co/"]
 Converters(){
     global selected_converter
-    #Requires AutoHotkey v2.0
-
 ; 1. Create the GUI object     \convert  
     ConverterGui := Gui(, "Please choose one converter")
 ; 2. Add buttons (width, height, Text)
@@ -640,4 +610,8 @@ detective_mode := false
     }
 
     Run("dc_detector.exe")  ; 运行程序
+}
++!F1:: {
+    MsgBox("starting spamming mode, press again later to activate")
+    Run "custom typing spamming.ahk"
 }

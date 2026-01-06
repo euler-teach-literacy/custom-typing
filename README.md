@@ -1,4 +1,4 @@
-# custom-typing v4.0
+# ℭ𝔘𝔖𝔗𝔒𝔐 𝔗𝔜𝔓ℑ𝔑𝔊 𝔳4.0 𝓒𝓤𝓢𝓣𝓞𝓜 𝓣𝓨𝓟𝓘𝓝𝓖 𝓿4.0
 
 this ahk file have multiple functions and we are still trying to add more functions! Download the exe file if you do not know how to execute it (the exe file might not be updated on time)
 
@@ -47,8 +47,12 @@ You can choose 1 folder to download, if you do not know what ahk is, download th
 # Updates of v4.0: 
 - made it easier to edit
 - discovered new bug: +!F1 make app crash
-- fancy font mode
+- 𝓯𝓪𝓷𝓬𝔂 𝓯𝓸𝓷𝓽 𝓶𝓸𝓭𝓮! 𝔅𝔢 𝔠𝔬𝔬𝔩 𝔦𝔫 𝔣𝔯𝔬𝔫𝔱 𝔬𝔣 𝔶𝔬𝔲𝔯 𝔣𝔯𝔦𝔢𝔫𝔡𝔰! 
 - added exe files for ppl who doesnot have ahk
-
+# Don't know how to download??
+- press code
+- press "Local"
+- Find and press "download Zip"
+- !you don't have to download all of them!
 ### made by - Salty fish and Euler
 #### salty-salted-fish & euler-teach-literacy 

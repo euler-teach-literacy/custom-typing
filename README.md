@@ -1,4 +1,4 @@
-# custom-typing v3.8
+# custom-typing v3.9
 
 this ahk file have multiple functions and we are still trying to add more functions! Download the exe file if you do not know how to execute it (the exe file might not be updated on time)
 
@@ -25,7 +25,7 @@ this ahk file have multiple functions and we are still trying to add more functi
          * turn wheelup to rightclick;
          * turn leftclick to wheelup;
          * turn rightclick to wheeldown!
-      - click alt+shift+F12 to activate, and click one more time to deactivate
+      - click alt+shift+F1 to activate, and click one more time to deactivate
       - click "alt" twice after activating to turn on gaming mode, which can help you click 22 times when scrolling! 
 9. Spamming mode! click "Alt+shift+F1" to activate
    * After activating spamming mode: 
@@ -33,8 +33,9 @@ this ahk file have multiple functions and we are still trying to add more functi
     - F2: Spamming your clipboard
     - F3: custom spam, which you can type what you want to spam
 10. You can play games by typing \game (made game GUI)
-11. spectating your friends(still developing)
-12. Some features are waiting for you to discover! 
+11. spectating your friends(still developing) with alt shift F3
+12. Some features are waiting for you to discover!
+13. Fancy fonts! press alt shift F4 to activate; press ctrl shift c to change font; ctrl shift f to exit the mode. 
 # Updates coming up: 
 - better website wheel
 - more emojis
@@ -42,10 +43,10 @@ this ahk file have multiple functions and we are still trying to add more functi
 - auto clicker or typer
 - ???
 
-# Updates of v3.8: 
-- Lots of stuff, made it easier to edit
+# Updates of v3.9: 
+- made it easier to edit
 - discovered new bug: +!F1 make app crash
-- fixed GUI
+- fancy font mode
 
 ### made by - Salty fish and Euler
 #### salty-salted-fish & euler-teach-literacy 

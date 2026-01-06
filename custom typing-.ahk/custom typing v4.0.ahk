@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 #Hotstring C
 #SingleInstance Force
-version := "3.8.0"
+version := "4.0.0"
 ; admin
 ^+r:: {
     MsgBox("Script is reloading...")
@@ -622,4 +622,5 @@ detective_mode := false
     MsgBox "fancy font mode is on, press ctrl shift f to exit; ctrl shift c to change font"
     SetTimer(() => ToolTip(), -1000)
     Run "attached_files\fancy_fonts.ahk"
+
 }

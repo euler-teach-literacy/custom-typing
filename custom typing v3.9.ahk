@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 #Hotstring C
 #SingleInstance Force
-version := "3.8.0"
+version := "3.9.0"
 ; admin
 ^+r:: {
     MsgBox("Script is reloading...")
@@ -631,4 +631,5 @@ detective_mode := false
     else{
         MsgBox "File not found! Fancy font will not be working! "
     }
+
 }

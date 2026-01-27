@@ -1,7 +1,7 @@
 #Requires AutoHotkey v2.0
 #Hotstring C
 #SingleInstance Force
-version := "4.0.0"
+version := "4.1.0"
 ; admin
 ^+r:: {
     MsgBox("Script is reloading...")
@@ -487,7 +487,7 @@ Converters(){
 #Hotstring C
 
 ; typing helper
-:: i ::I   ;i --> I 
+::i ::I   ;i --> I 
 ; turns out it cant detect "enter" in hotstring :(
 
 ; part 2 --> due to too much code
@@ -495,106 +495,60 @@ Converters(){
 ; click to scroll --------------------------------- alt shift F2
 toggle := false
 db_toggle := false  ; multi click
+; script_name := A_ScriptName . " - Visual Studio Code"
 lastAltTime := 0
+#HotIf WinActive(A_ScriptName . " - Visual Studio Code")
 
-~LAlt::{
-    if !toggle{
-        return
-    }
-    global lastAltTime, db_toggle
-    currentTime := A_TickCount
-
-    if (currentTime - lastAltTime < 300) {
-        db_toggle := !db_toggle
-        ToolTip("Toggle is now " . (db_toggle ? "ON" : "OFF"))
-        SetTimer(HideToolTip, -1000)
-        lastAltTime := 0
-    } else {
-        lastAltTime := currentTime
-    }
+~^s:: {
+    Sleep(100)
+    Reload
 }
 
-+!F2::{  ; Shift + Alt + F2 toggles on/off
+#HotIf
++!F2::  ; Shift + Alt + F2 toggles on/off
+{
     global toggle
     toggle := !toggle
-    ToolTip("Toggle: " . toggle )
-    SetTimer(HideToolTip, -1000)
-    
-    if !toggle {
-        toggle := false
-        db_toggle := false
-    }
-return
+    ToolTip("Toggle "  toggle)
+    SetTimer(ToolTip, -1000)
 }
-WheelUp::{
-    global toggle
-    if (toggle) {
-        Click ("Right")
-    }
-    else {
-        Send "{WheelUp}"
-    }
-return
+global toggle
+#HotIf toggle ^ GetKeyState("F2")
+~LAlt::  ; Single Alt key press hotkeys
+{
+    global db_toggle
+    db_toggle := !db_toggle
+    ToolTip("Toggle is now " . db_toggle )
+    SetTimer(ToolTip, -1000)
+    ; MsgBox, doubled
 }
 
-WheelDown::{
-    global toggle
-    if (toggle) {
-        click()
-        if (db_toggle) {
-            loop 22
-                Click()
-        }
-    }
-    else {
-        Send "{WheelDown}"
-    }
-return
-}
+WheelUp:: click("Right")
 
-LButton::{
-    global toggle
-    if (toggle){
-        ; MsgBox, You left-clicked!
-        Send "{WheelUp}"
-    }
-    else{
-        ; Pass through the down event so dragging works
-        Send "{LButton down}"
-        KeyWait("LButton")  ; Wait for button release
-        Send "{LButton up}"
-    }
-return
-}
-
-RButton::{
-    global toggle
-    if (toggle){
-        ; MsgBox, You right-clicked!
-        Send "{WheelDown}"
-        }
-    else {
-        Send "{RButton down}"
-        KeyWait("RButton")  ; Wait for button release
-        Send "{RButton up}"
-    }
-return
-}
-
-MButton::{
-    global toggle
-    if (toggle){
-        Send "{LButton down}"
-        KeyWait("MButton")  ; Wait for button release
-        Send "{LButton up}"   
-    }
-    else{
-        ; Pass through the down event so dragging works
-        Send "{MButton down}"
-        KeyWait("MButton")  ; Wait for button release
-        Send "{MButton up}"
+WheelDown:: {
+    click
+    if (db_toggle) {
+        Click(, , , 30)
     }
 }
+LButton:: Send "{WheelUp}"
+RButton:: {
+    Send("WheelDown}")
+    if (db_toggle) {
+        Click("R", 10)
+        sleep 300
+        Click("R", 10)
+        sleep 300
+        Click("R", 10)
+        sleep 300
+    }
+}
+MButton:: {
+    Send("{LButton down}")
+    KeyWait("{MButton}",)  ; Wait for button release
+    Send ("{LButton up}")
+}
+#HotIf
 ; dc detective mode                         alt shift F3
 detective_mode := false
 +!F3:: {  ; Shift + Alt + F3
@@ -603,13 +557,14 @@ detective_mode := false
 
     ToolTip("Detective mode: " . detective_mode)  ; 显示状态
     SetTimer HideToolTip, -1000           ; 1秒后清除 ToolTip
-    ; bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug
+    ; not tested
     if !detective_mode {
-        WinClose("attached_files\dc_detector.exe")
+        ProcessClose("attached_files\dc_detector.exe")
+        ToolTip("dc detective mode off")
+        SetTimer(ToolTip, 200)
         return
     }
-    ; bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug bug
-
+    ; not tested
     Run("attached_files\dc_detector.exe")  ; 运行程序
 }
 +!F1:: {
@@ -617,10 +572,25 @@ detective_mode := false
     Run "attached_files\custom typing spamming.ahk"
 }
 ; fancy font
-
 +!F4:: {
     MsgBox "fancy font mode is on, press ctrl shift f to exit; ctrl shift c to change font"
     SetTimer(() => ToolTip(), -1000)
     Run "attached_files\fancy_fonts.ahk"
+}
 
+hwnd := 0
+!`:: {
+    global hwnd
+    if not hwnd {
+        hwnd := WinExist("A")
+    }
+    WinSetExStyle("^0x80", "ahk_id " hwnd)
+    ; WinSetStyle("^0x10000000", "ahk_id " hwnd)
+    if (WinGetExStyle("ahk_id " hwnd) & 0x80) {
+        WinMinimize("ahk_id " hwnd)
+    } else {
+        WinWait("ahk_id " hwnd)
+        WinMaximize("ahk_id " hwnd)
+        hwnd := 0
+    }
 }

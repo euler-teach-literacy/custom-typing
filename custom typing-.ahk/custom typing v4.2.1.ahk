@@ -38,7 +38,7 @@ eschold() {
 }
 ; music
 
-SoundPlay ("E:\codings\AHK\custom_typing\custom typing-.ahk\attached_files\resources\1.mp3")
+SoundPlay ("attached_files\resources\1.mp3")
 SoundSetVolume(12)
 ; ctrl C
 

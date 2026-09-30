@@ -1,22 +1,51 @@
 #Requires AutoHotkey v2.0
 #Hotstring C
 #SingleInstance Force
-version := "4.1.0"
+global version := "4.2.1"
+menutoggle := 0
+global first_copy_prompt := 0
+global started := A_TickCount
+global toggle := false
 ; admin
 ^+r:: {
     MsgBox("Script is reloading...")
     Reload()
 }
 ^+e::{
+    MsgBox("Thank you for using CUSTOMTYPING" . version . " by RandomEuler and SaltyFish")
     ExitApp()
 }
+escholdtime := 0
+
+eschold() {
+    global escholdtime
+    escholdtime += 1
+    if escholdtime == 300
+        ToolTip "script off in 2 sec"
+    if escholdtime == 450
+        ToolTip()
+    if escholdtime == 500
+        MsgBox("Thank you for using CUSTOMTYPING" . version . "by RandomEuler and SaltyFish")
+        ExitApp
+}
+
+~Esc:: SetTimer eschold, 10, 2147483647
+~Esc up:: {
+    global escholdtime
+    SetTimer eschold, 0
+    escholdtime := 0
+    ToolTip()
+}
+; music
+
+SoundPlay ("E:\codings\AHK\custom_typing\custom typing-.ahk\attached_files\resources\1.mp3")
+SoundSetVolume(12)
 ; ctrl C
 
 bloxd := 1
 ships := 0
 copy_prompt := 0
-first_copy_prompt := 0
-started := A_TickCount
+
 
 #HotIf A_TickCount - started >= 100
 
@@ -42,7 +71,6 @@ HideToolTip() {
     first_copy_prompt := 1
 
     SetTimer(HideToolTip, -1000)
-
 }
 
 ~^Alt:: {
@@ -62,7 +90,7 @@ HideToolTip() {
     }
 }
 
-; html / codings
+; faster coding
 ::\css::
 {
    SendText "
@@ -87,14 +115,23 @@ padding: 10px
     <head>
     <title></title>
 <link rel="stylesheet" href=""/>
+)"
+    Send "{Enter}"
+    Send "{BackSpace}"
+    SendText "
+(
 </head>
 <body>
     <div>
 </div>
 <script src=""></script>
-</body>
-</html>
 )"
+    Send "{Enter}"
+    Send "{BackSpace}"
+    SendText "</body>"
+    Send "{Enter}"
+    Send "{BackSpace}"
+    SendText "</html>"
 }
 
 ::\py import::
@@ -125,28 +162,36 @@ itemCount := items.Length
 radius := 90
 size := radius * 2 + 40
 
-normalColor := "AAAAAA"
-hoverColor  := "4FC3F7"
+normalColor := "ffffff"
+hoverColor  := "ff0000"
 
 currentIndex := 0
 controls := []
 animations := { list: [], running: false }
 
 ;================ 热键 ================
+
 !w::
 {
+    global menutoggle
+    menutoggle := !menutoggle
+    ; prevent menu spammingw
+    KeyWait "w"
+
     MouseGetPos &mx, &my
     ShowMenu(mx, my)
 }
-
+#HotIf menutoggle = 1
 ~Alt Up::
 {
     global currentIndex
+    HideMenu()
     if currentIndex = 1{
         Run "https://bloxd.io"
     }
     else if currentIndex = 2{
-        MsgBox ("you chose 2")
+        ;Run "attached_files\a.bat"
+        MsgBox ("You chose 2")
     }
     else if currentIndex = 3{
         MsgBox ("you chose 3")
@@ -160,7 +205,7 @@ animations := { list: [], running: false }
     else if currentIndex = 6{
         MsgBox ("current version: " . version)
     }
-    HideMenu()
+    
 }
 
 ;================ GUI ================
@@ -205,7 +250,7 @@ UpdateSelection() {
     cy := gy + size/2
 
     dx := mx - cx
-    dy := cy - my    ; 屏幕 → 数学坐标（关键）
+    dy := cy - my    ; 屏幕 → 数学坐标
 
     dist := Sqrt(dx*dx + dy*dy)
     if dist < 25 {
@@ -281,7 +326,7 @@ UpdateAnimations() {
         animations.running := false
     }
 }
-
+#HotIf
 ;================ 颜色插值 ================
 LerpColor(c1, c2, t) {
     r1 := "0x" SubStr(c1,1,2)
@@ -296,9 +341,6 @@ LerpColor(c1, c2, t) {
         , Round(g1 + (g2-g1)*t)
         , Round(b1 + (b2-b1)*t))
 }
-
-
-
 
 #Hotstring C
 ; hotkstrings for typing ---------------------------------------------------
@@ -353,6 +395,7 @@ DoAction(action, param) {
             MsgBox "未知动作：" action
     }
 }
+
 #Hotstring C0
 ; file converters
 converter_list := ["https://www.freeconvert.com/", "https://cloudconvert.com/", "https://www.online-convert.com/", "https://convertio.co/"]
@@ -486,25 +529,12 @@ Converters(){
 ; \gam
 #Hotstring C
 
-; typing helper
-::i ::I   ;i --> I 
-; turns out it cant detect "enter" in hotstring :(
-
 ; part 2 --> due to too much code
 ;Run "custom typing 2 v3.6.ahk"
 ; click to scroll --------------------------------- alt shift F2
-toggle := false
+
 db_toggle := false  ; multi click
 ; script_name := A_ScriptName . " - Visual Studio Code"
-lastAltTime := 0
-#HotIf WinActive(A_ScriptName . " - Visual Studio Code")
-
-~^s:: {
-    Sleep(100)
-    Reload
-}
-
-#HotIf
 +!F2::  ; Shift + Alt + F2 toggles on/off
 {
     global toggle
@@ -512,8 +542,15 @@ lastAltTime := 0
     ToolTip("Toggle "  toggle)
     SetTimer(ToolTip, -1000)
 }
-global toggle
-#HotIf toggle ^ GetKeyState("F2")
++!^a::  ; shift alt ctrl a => toggles on/off
+{
+    global toggle
+    toggle := !toggle
+    ToolTip("Toggle "  toggle)
+    SetTimer(ToolTip, -1000)
+}
+
+#HotIf toggle ;^ GetKeyState("F2")
 ~LAlt::  ; Single Alt key press hotkeys
 {
     global db_toggle
@@ -533,14 +570,12 @@ WheelDown:: {
 }
 LButton:: Send "{WheelUp}"
 RButton:: {
-    Send("WheelDown}")
+    Send("{WheelDown}")
     if (db_toggle) {
-        Click("R", 10)
-        sleep 300
-        Click("R", 10)
-        sleep 300
-        Click("R", 10)
-        sleep 300
+        loop 3{
+            Send("{WheelDown}")
+            Sleep 40
+        }
     }
 }
 MButton:: {
@@ -594,3 +629,74 @@ hwnd := 0
         hwnd := 0
     }
 }
+
+Calculated_screen_wid := A_ScreenWidth-300
+global color := "FF0000"
+
+ShowTextInCorner(text, raw_xPos, yPos) {
+    myGui := Gui("+AlwaysOnTop -Caption +ToolWindow +E0x20")
+
+    bgColor := "123456"
+    myGui.BackColor := bgColor
+    WinSetTransColor(bgColor, myGui.Hwnd)
+
+    myGui.SetFont("s12 w600 c" color, "Arial")
+    myGui.SetFont("q5 c" color, "Segoe UI")
+    myGui.Add("Text", "+BackgroundTrans", text)
+
+    xPos := A_ScreenWidth - 300 - raw_xPos
+    myGui.Show("x" xPos " y" yPos " NoActivate")
+
+    ; 500ms 后自动销毁窗口，防止无限创建
+    SetTimer(() => myGui.Destroy(), -500)
+}
+
+Random_color() {
+    chars := "0123456789ABCDEF"
+    result := ""
+
+    Loop 6
+        result .= SubStr(chars, Random(1, 16), 1)
+
+    return result
+}
+BlendColor(c1, c2, t)
+{
+    r1 := "0x" SubStr(c1,1,2)
+    g1 := "0x" SubStr(c1,3,2)
+    b1 := "0x" SubStr(c1,5,2)
+
+    r2 := "0x" SubStr(c2,1,2)
+    g2 := "0x" SubStr(c2,3,2)
+    b2 := "0x" SubStr(c2,5,2)
+
+    r := Round(r1 + (r2-r1)*t)
+    g := Round(g1 + (g2-g1)*t)
+    b := Round(b1 + (b2-b1)*t)
+
+    return Format("{:02X}{:02X}{:02X}", r,g,b)
+}
+loop_switch_color(){
+    global color
+    old := color
+        new := Random_color()
+
+        Loop 10
+        {
+            color := BlendColor(old, new, A_Index / 20)
+            Show_watermark()
+        }
+}
+
+Show_watermark() {
+    global version
+    ShowTextInCorner("Custom Typing v" version, -30, -10)
+    ShowTextInCorner("by RandomEuler and SaltyFish", 20, 20)
+}
+
+
+SetTimer(loop_switch_color, 150)
+
+; 彩蛋
+;FileAppend("a", "attached_files\resources\tmp.txt")
+;Run("attached_files\functions.py")

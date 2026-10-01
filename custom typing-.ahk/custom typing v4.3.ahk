@@ -1,11 +1,12 @@
 #Requires AutoHotkey v2.0
 #Hotstring C
 #SingleInstance Force
-global version := "4.2.1"
+global version := "4.3"
 menutoggle := 0
 global first_copy_prompt := 0
 global started := A_TickCount
 global toggle := false
+
 ; admin
 ^+r:: {
     MsgBox("Script is reloading...")
@@ -38,14 +39,141 @@ eschold() {
 }
 ; music
 
-SoundPlay ("attached_files\resources\1.mp3")
+
+#Requires AutoHotkey v2.0
+
+global player := ComObject("WMPlayer.OCX")
+global musicStage := 1
+
+; =========================  music
+
+PlayFile(file, volume := 100) {
+    global player
+
+    player.URL := A_ScriptDir "\" file
+    player.settings.volume := volume
+    player.controls.play()
+}
+
+; 随机音乐
+; =========================
+
+play_music() {
+    music_num := Random(1, 7)
+
+    switch music_num {
+        case 1:
+            PlayFile("attached_files\resources\1.mp3")
+        default:
+            PlayFile("attached_files\resources\1.mp3")
+    }
+}
+
+; 10min 音乐
+; =========================
+
+play_999() {
+    global player
+
+    player.URL := A_ScriptDir "\attached_files\resources\999.mp3"
+
+    player.settings.volume := 0
+    player.controls.play()
+
+    ; 5 秒淡入
+    Loop 50 {
+        player.settings.volume := A_Index * 2
+        Sleep 100
+    }
+}
+
+; 5:00
+; =========================
+
+Start999() {
+    global player, musicStage
+
+    musicStage := 2
+
+    ; 当前音乐淡出
+    Loop 50 {
+        player.settings.volume := 100 - (A_Index * 2)
+        Sleep 100
+    }
+
+    ; 停止当前音乐
+    player.controls.stop()
+
+    ; 播放 999
+    play_999()
+}
+
+; 10:00
+; =========================
+
+TenMinutes() {
+    global player, musicStage
+
+    musicStage := 3
+
+    ; 停止 999
+    
+
+    ; 提示
+    ToolTip("You've been using Custom Typing for 10 mins!!") 
+    sleep 1000
+    HideToolTip()
+
+    Sleep 200000
+    player.controls.stop()
+    ; 开始随机音乐
+    play_music()
+
+    ; 检查歌曲是否结束
+    SetTimer(CheckMusic, 1000)
+}
+
+; 检查随机歌曲是否结束
+; =========================
+
+CheckMusic() {
+    global player, musicStage
+
+    if player.playState = 1 {
+
+        if musicStage = 1 {
+            ; 5分钟前
+            play_music()
+        }
+
+        else if musicStage = 3 {
+            ; 10分钟以后
+            play_music()
+        }
+    }
+}
+
+
+; 开始
+; =========================
+
 SoundSetVolume(12)
+
+; 0:00
+play_music()
+SetTimer(CheckMusic, 1000)
+; 4:55 开始执行
+SetTimer(Start999, -295000)
+
+; 10:00
+SetTimer(TenMinutes, -600000)
+
+
 ; ctrl C
 
 bloxd := 1
 ships := 0
 copy_prompt := 0
-
 
 #HotIf A_TickCount - started >= 100
 
@@ -61,8 +189,6 @@ HideToolTip() {
     global first_copy_prompt
 
     Sleep 100
-    ;;; MsgBox(A_Clipboard)
-    ;;; ToolTip(A_Clipboard)
     clip := SubStr(A_Clipboard, 1, 200)
     if StrLen(A_Clipboard) > 200
         clip .= "..."
@@ -152,8 +278,11 @@ import re
 import Flask
 import Canva
 )"
-}
+} 
 :*:\version::{
+    ;loop 6{
+    ;    Send "{BackSpace}"
+    ;}
     MsgBox ("current version: " . version)
 }
 ; wheel --------------------------------------------------------------------
@@ -170,7 +299,6 @@ controls := []
 animations := { list: [], running: false }
 
 ;================ 热键 ================
-
 !w::
 {
     global menutoggle
@@ -463,40 +591,7 @@ Converters(){
     text := StrReplace(text, "", "_")
     Run "https://www.google.com/search?q=" text "&oq=" text
 }
-; gaming
-
-;:*b0:\game::
-;:*b0:\playgame::
-;{
-;    games_list := []
-;
-;; 1. Create the GUI object     \convert  
-;    ConverterGui := Gui(, "Please choose a game")
-;; 2. Add buttons (width, height, Text)
-;; 'g' is replaced by .OnEvent("Click", ...) in v2
-;    Btn1 := ConverterGui.Add("Button", "w150 h60", "Snakegame")
-;    Btn2 := ConverterGui.Add("Button", "w150 h60", "Cloudconvert")
-;    Btn3 := ConverterGui.Add("Button", "w150 h60", "Onlineconvert")
-;    Btn4 := ConverterGui.Add("Button", "w150 h60", "Convertio")
-;    Btn5 := ConverterGui.Add("Button", "w200 h80", "IDK, Random? ")
-;; 3. Define what happens when clicked
-;    Btn1.OnEvent("Click", (*) => Run("https://www.freeconvert.com/"))
-;    Btn2.OnEvent("Click", (*) => Run("https://cloudconvert.com/"))
-;    Btn3.OnEvent("Click", (*) => Run("https://www.online-convert.com/"))
-;    Btn4.OnEvent("Click", (*) => Run("https://convertio.co/"))
-;    Btn5.OnEvent("Click", (*) => (
-;        index := Random(1, converter_list.Length),
-;        Run(converter_list[index])
-;    ))
-;; 4. Show the window    
-;    ConverterGui.Show()
-;
-;; 5. Handle closing the window
-;    ConverterGui.OnEvent("Close", (*) => Exit())
-;
-;}
-
-; simple version ---------
+; games
 #Hotstring C0
 ::\game::
 {
@@ -690,11 +785,23 @@ loop_switch_color(){
 
 Show_watermark() {
     global version
+    
     ShowTextInCorner("Custom Typing v" version, -30, -10)
     ShowTextInCorner("by RandomEuler and SaltyFish", 20, 20)
 }
+global time := 0
+cornor_timer(){
+    global time
+    time += 1
+    
+    minutes := Floor(time / 60)
+    seconds := Mod(time, 60)
 
+    timerText := Format("{:02}:{:02}", minutes, seconds)
 
+    ShowTextInCorner(timerText, 1600, 20)
+}
+SetTimer(cornor_timer,1000)
 SetTimer(loop_switch_color, 150)
 
 ; 彩蛋

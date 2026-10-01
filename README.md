@@ -1,4 +1,4 @@
-# ℭ𝔘𝔖𝔗𝔒𝔐 𝔗𝔜𝔓ℑ𝔑𝔊 𝔳4.2.1 𝓒𝓤𝓢𝓣𝓞𝓜 𝓣𝓨𝓟𝓘𝓝𝓖 𝓿4.2.1
+# ℭ𝔘𝔖𝔗𝔒𝔐 𝔗𝔜𝔓ℑ𝔑𝔊 𝔳4.3 𝓒𝓤𝓢𝓣𝓞𝓜 𝓣𝓨𝓟𝓘𝓝𝓖 𝓿4.3
 
 this ahk file have multiple functions and we are still trying to add more functions! Download the exe file if you do not know how to execute it (the exe file might not be updated on time)
 
